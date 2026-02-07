@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI, Part } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(
-  process.env.NEXT_PUBLIC_GEMINI_API_KEY || ""
+  process.env.NEXT_PUBLIC_AI_API_KEY || ""
 );
 
 const BASE_MODEL = "gemini-2.0-flash";
