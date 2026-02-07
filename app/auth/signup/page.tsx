@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { useAuth } from "@/components/AuthProvider";
 
 export default function SignUpPage() {
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -15,10 +17,29 @@ export default function SignUpPage() {
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Redirect already-authenticated users to chat
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.push("/chat");
+    }
+  }, [user, authLoading, router]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    if (!isSupabaseConfigured) {
+      setError(
+        "Authentication is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY."
+      );
+      return;
+    }
 
     if (!isOver13) {
       setError("You must be 13 years or older to use SorokinAi.");
@@ -45,31 +66,51 @@ export default function SignUpPage() {
 
     setLoading(true);
 
-    const { error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    try {
+      const { error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
 
-    if (signUpError) {
-      setError(signUpError.message);
+      if (signUpError) {
+        setError(signUpError.message);
+        setLoading(false);
+        return;
+      }
+
+      // Auto-login after sign up
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) {
+        setError(signInError.message);
+        setLoading(false);
+        return;
+      }
+
+      router.push("/chat");
+    } catch {
+      setError("Unable to connect to authentication service. Please try again later.");
       setLoading(false);
-      return;
     }
-
-    // Auto-login after sign up
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (signInError) {
-      setError(signInError.message);
-      setLoading(false);
-      return;
-    }
-
-    router.push("/chat");
   };
+
+  // Show loading spinner while checking auth state
+  if (!mounted || authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-slate-900 px-4">
+        <div className="flex items-center gap-3 text-gray-500 dark:text-gray-400">
+          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-slate-900 px-4">
@@ -108,6 +149,7 @@ export default function SignUpPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="email"
                 className="input-field"
                 placeholder="you@example.com"
               />
@@ -122,6 +164,7 @@ export default function SignUpPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete="new-password"
                 className="input-field"
                 placeholder="At least 6 characters"
               />
@@ -136,6 +179,7 @@ export default function SignUpPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                autoComplete="new-password"
                 className="input-field"
                 placeholder="Confirm your password"
               />
@@ -178,7 +222,9 @@ export default function SignUpPage() {
                   <Link
                     href="/terms"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-brand-600 hover:text-brand-700 underline"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Terms of Service
                   </Link>
@@ -186,7 +232,9 @@ export default function SignUpPage() {
                   <Link
                     href="/privacy"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-brand-600 hover:text-brand-700 underline"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Privacy Policy
                   </Link>
@@ -194,7 +242,9 @@ export default function SignUpPage() {
                   <Link
                     href="/acceptable-use"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-brand-600 hover:text-brand-700 underline"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Acceptable Use Policy
                   </Link>

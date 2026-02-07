@@ -4,9 +4,9 @@ import { AuthProvider } from "@/components/AuthProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SorokinAi – AI Powered by Google Gemini",
+  title: "SorokinAi – Advanced AI Chat",
   description:
-    "Ask anything, get smart answers fast. AI chat platform powered by Google Gemini models.",
+    "Ask anything, get smart answers fast. Advanced AI chat platform with multiple models.",
 };
 
 export default function RootLayout({

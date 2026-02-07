@@ -7,7 +7,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { useTheme } from "@/components/ThemeProvider";
 import { supabase } from "@/lib/supabase";
 import { getAllRemainingUses } from "@/lib/usage";
-import { ModelTier, MODEL_CONFIG } from "@/lib/gemini";
+import { ModelTier, MODEL_CONFIG } from "@/lib/ai";
 
 export default function SettingsPage() {
   const { user, loading: authLoading, signOut } = useAuth();

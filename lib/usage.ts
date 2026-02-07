@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import { MODEL_CONFIG, ModelTier } from "./gemini";
+import { MODEL_CONFIG, ModelTier } from "./ai";
 
 export async function getUsageToday(
   userId: string,

@@ -32,7 +32,7 @@ export default function PrivacyPage() {
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">2. How We Use Your Information</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
-            We use your information to: provide and maintain the Service, including processing your queries through Google Gemini AI models; manage your account and authentication; enforce usage limits and track daily quotas; improve the Service and user experience; communicate with you about Service updates; and comply with legal obligations.
+            We use your information to: provide and maintain the Service, including processing your queries through our AI models; manage your account and authentication; enforce usage limits and track daily quotas; improve the Service and user experience; communicate with you about Service updates; and comply with legal obligations.
           </p>
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">3. Data Storage and Security</h2>
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">4. Third-Party Services</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
-            SorokinAi integrates with Google Gemini API for AI processing. Your prompts and uploaded images are sent to Google&apos;s servers for processing. Please review Google&apos;s AI privacy policies for information on how they handle data. We also use Supabase for authentication and data storage, subject to Supabase&apos;s privacy policy.
+            SorokinAi integrates with third-party AI services for processing. Your prompts and uploaded images are sent to our AI provider&apos;s servers for processing. Please review our provider&apos;s privacy policies for information on how they handle data. We also use Supabase for authentication and data storage, subject to Supabase&apos;s privacy policy.
           </p>
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">5. Data Retention</h2>

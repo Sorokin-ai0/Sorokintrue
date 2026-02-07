@@ -10,7 +10,7 @@ import ChatInput from "@/components/ChatInput";
 import ChatMessage from "@/components/ChatMessage";
 import ModelSelector from "@/components/ModelSelector";
 import { supabase } from "@/lib/supabase";
-import { ModelTier, generateResponse } from "@/lib/gemini";
+import { ModelTier, generateResponse } from "@/lib/ai";
 import { getAllRemainingUses, logUsage } from "@/lib/usage";
 
 interface Message {
@@ -370,7 +370,7 @@ export default function ChatPage() {
                   Welcome to SorokinAi
                 </h2>
                 <p className="text-gray-500 dark:text-gray-400 mb-6">
-                  Ask me anything! I&apos;m powered by Google Gemini and ready to help with questions, analysis, coding, and more.
+                  Ask me anything! I&apos;m ready to help with questions, analysis, coding, and more.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
                   {[

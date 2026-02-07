@@ -55,7 +55,7 @@ export default function AcceptableUsePage() {
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">5. Image Uploads</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
-            When uploading images for analysis, you must ensure you have the right to share those images. Do not upload images containing sensitive personal information of others, explicit content, or copyrighted material without authorization. Uploaded images are processed through Google Gemini and are subject to Google&apos;s content policies.
+            When uploading images for analysis, you must ensure you have the right to share those images. Do not upload images containing sensitive personal information of others, explicit content, or copyrighted material without authorization. Uploaded images are processed through our AI provider and are subject to their content policies.
           </p>
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">6. Enforcement</h2>

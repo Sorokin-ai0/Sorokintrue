@@ -19,10 +19,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // This route exists as a fallback — the main app uses client-side Gemini calls.
-    // For a production app, you'd move the Gemini call server-side here.
+    // This route exists as a fallback — the main app uses client-side AI calls.
+    // For a production app, you'd move the AI call server-side here.
     return NextResponse.json({
-      message: "Use the client-side Gemini integration for chat.",
+      message: "Use the client-side AI integration for chat.",
     });
   } catch (error: any) {
     return NextResponse.json(

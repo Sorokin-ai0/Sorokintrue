@@ -42,7 +42,7 @@ export default function TermsPage() {
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">4. Use of the Service</h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
-            SorokinAi provides access to AI-powered chat capabilities through Google Gemini models. The Service is provided &quot;as is&quot; and &quot;as available.&quot; AI-generated responses may not always be accurate, complete, or current. You should independently verify important information. Free tier users receive limited daily queries per model as displayed in the application.
+            SorokinAi provides access to AI-powered chat capabilities through advanced language models. The Service is provided &quot;as is&quot; and &quot;as available.&quot; AI-generated responses may not always be accurate, complete, or current. You should independently verify important information. Free tier users receive limited daily queries per model as displayed in the application.
           </p>
 
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">5. Intellectual Property</h2>

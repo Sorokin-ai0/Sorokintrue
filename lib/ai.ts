@@ -14,19 +14,19 @@ export const MODEL_CONFIG: Record<
     name: "Flash",
     modelId: "gemini-1.5-flash",
     dailyLimit: 50,
-    label: "Gemini 1.5 Flash",
+    label: "Fast & efficient",
   },
   pro: {
     name: "Pro",
     modelId: "gemini-1.5-pro",
     dailyLimit: 10,
-    label: "Gemini 1.5 Pro",
+    label: "Advanced reasoning",
   },
   "deep-search": {
     name: "Deep Search",
     modelId: "gemini-2.0-flash",
     dailyLimit: 3,
-    label: "Gemini 2.0 Experimental",
+    label: "Most capable",
   },
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ModelTier, MODEL_CONFIG } from "@/lib/gemini";
+import { ModelTier, MODEL_CONFIG } from "@/lib/ai";
 
 interface ModelSelectorProps {
   selectedModel: ModelTier;

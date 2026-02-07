@@ -36,12 +36,12 @@ export default function LandingPage() {
           <div className="text-center">
             <div className="inline-flex items-center gap-2 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 px-4 py-1.5 rounded-full text-sm font-medium mb-8">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Powered by Google Gemini
+              Advanced AI Chat Platform
             </div>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white tracking-tight">
               SorokinAi
               <span className="block text-brand-600 mt-2">
-                AI Powered by Google Gemini
+                Advanced AI Chat
               </span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
@@ -75,7 +75,7 @@ export default function LandingPage() {
                 Flash Model
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Lightning-fast responses with Gemini 1.5 Flash. 50 free queries per day for quick answers.
+                Lightning-fast responses for everyday questions. 50 free queries per day for quick answers.
               </p>
             </div>
 
@@ -89,7 +89,7 @@ export default function LandingPage() {
                 Pro Model
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Advanced reasoning with Gemini 1.5 Pro. 10 uses per day for complex tasks and analysis.
+                Advanced reasoning for complex tasks. 10 uses per day for deeper analysis and problem-solving.
               </p>
             </div>
 
@@ -103,7 +103,7 @@ export default function LandingPage() {
                 Deep Search
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Cutting-edge Gemini 2.0 Experimental. 3 uses per day for the most challenging questions.
+                Our most capable model for the hardest problems. 3 uses per day for the most challenging questions.
               </p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function LandingPage() {
               Multimodal AI
             </h3>
             <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-              Upload images alongside your prompts. SorokinAi can analyze photos, diagrams, screenshots, and more using Gemini&apos;s vision capabilities.
+              Upload images alongside your prompts. SorokinAi can analyze photos, diagrams, screenshots, and more with built-in vision capabilities.
             </p>
           </div>
         </section>
