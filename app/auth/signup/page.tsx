@@ -6,6 +6,26 @@ import Link from "next/link";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { useAuth } from "@/components/AuthProvider";
 
+function friendlyAuthError(message: string): string {
+  const lower = message.toLowerCase();
+  if (lower.includes("already registered") || lower.includes("already been registered")) {
+    return "This email is already in use. Try logging in instead.";
+  }
+  if (lower.includes("database error saving new user") || lower.includes("database error")) {
+    return "Account setup failed due to a temporary issue. Please try again in a moment.";
+  }
+  if (lower.includes("invalid email")) {
+    return "Please enter a valid email address.";
+  }
+  if (lower.includes("rate limit") || lower.includes("too many requests")) {
+    return "Too many attempts. Please wait a minute and try again.";
+  }
+  if (lower.includes("weak password") || lower.includes("password")) {
+    return "Password is too weak. Use at least 6 characters with a mix of letters and numbers.";
+  }
+  return message;
+}
+
 export default function SignUpPage() {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
@@ -67,13 +87,20 @@ export default function SignUpPage() {
     setLoading(true);
 
     try {
-      const { error: signUpError } = await supabase.auth.signUp({
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
       });
 
       if (signUpError) {
-        setError(signUpError.message);
+        setError(friendlyAuthError(signUpError.message));
+        setLoading(false);
+        return;
+      }
+
+      // If sign-up succeeded but no user was returned, the email may already be registered
+      if (!signUpData.user) {
+        setError("Something went wrong. Please try again or use a different email.");
         setLoading(false);
         return;
       }
@@ -85,7 +112,13 @@ export default function SignUpPage() {
       });
 
       if (signInError) {
-        setError(signInError.message);
+        // Profile trigger may have failed — attempt rollback by signing out
+        try {
+          await supabase.auth.signOut();
+        } catch {
+          // ignore signout errors during rollback
+        }
+        setError(friendlyAuthError(signInError.message));
         setLoading(false);
         return;
       }
